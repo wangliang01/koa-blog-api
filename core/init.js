@@ -1,11 +1,11 @@
 const requireDirectory = require("require-directory");
 const Router = require("koa-router");
-const catchError = require('./exception')
+const catchError = require('../middleware/exception')
 class InitManager {
   static initCore(app) {
     InitManager.app = app;
-    InitManager.initLoadRouters();
     InitManager.initLoadGlobalException()
+    InitManager.initLoadRouters();
   }
   // 加载路由
   static initLoadRouters() {
