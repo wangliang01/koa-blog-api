@@ -1,9 +1,11 @@
 const requireDirectory = require("require-directory");
 const Router = require("koa-router");
+const catchError = require('./exception')
 class InitManager {
   static initCore(app) {
     InitManager.app = app;
     InitManager.initLoadRouters();
+    InitManager.initLoadGlobalException()
   }
   // 加载路由
   static initLoadRouters() {
@@ -22,6 +24,10 @@ class InitManager {
         }
       },
     });
+  }
+  // 加载全局异常中间件
+  static initLoadGlobalException() {
+    InitManager.app.use(catchError)
   }
 }
 
