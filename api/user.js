@@ -1,10 +1,12 @@
 const Router = require('koa-router')
+const {KoaValidator} = require('../core/validator')
 
 const router =  Router({
   prefix: ''
 })
 
-router.get('/user', async (ctx) => {
+router.post('/user/:id', async (ctx) => {
+  new KoaValidator().validate(ctx)
   ctx.body = {
     key: 'user'
   }
